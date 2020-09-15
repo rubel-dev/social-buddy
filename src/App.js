@@ -1,25 +1,42 @@
+import { Grid } from '@material-ui/core';
 import React from 'react';
-import logo from './logo.svg';
+import ReactDOM from 'react-dom'; 
 import './App.css';
+import Home from './Component/Home/Home';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import UserDetail from './Component/UserDetail/UserDetail';
+import NotFound from './Component/NotFound/NotFound'; 
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Grid container justify = "center">
+       <Router>
+          
+         <Switch>
+           <Route path="/home">
+              <Home></Home>
+           </Route>
+           <Route path ="/:userId">
+                <UserDetail></UserDetail>
+           </Route>
+           <Route exact path ='/'>
+              <Home></Home>
+           </Route>
+           <Route path ="*">
+              <NotFound></NotFound>
+           </Route>
+
+         </Switch>
+       </Router>
+     
+       </Grid>
+        
+   
   );
 }
 
